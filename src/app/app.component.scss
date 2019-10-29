@@ -1,0 +1,68 @@
+.title {
+  text-align: center;
+}
+
+.tables {
+  width: 100%;
+}
+
+.tables-container {
+  width: 100%;
+  display: flex;
+}
+
+.table {
+  display: inline-block;
+  margin: 0 50px 50px 50px;
+  width: 100%;
+
+  .ign {
+    color: #07C;
+    cursor: pointer;
+  }
+}
+
+.img {
+  width: 20px;
+  height: 20px;
+  margin: 0 10px;
+}
+
+.currency-name {
+  width: 200px;
+}
+
+.mat-table__wrapper .mat-table {
+  min-width: auto !important;
+  width: 100% !important;
+}
+
+.mat-header-row {
+  width: 100%;
+}
+
+.mat-row {
+  width: 100%;
+}
+
+table {
+  text-align: center !important;
+  width: 100%;
+}
+
+.mat-header-cell {
+  text-align: center;
+}
+
+.currency-compare {
+  display: inline-flex;
+}
+
+.currency-block {
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle {
+  margin-bottom: 10px;
+}

@@ -1,21 +1,88 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<div class="title">
   <h1>
-    Welcome to {{ title }}!
+    poe stash
   </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="tables">
+  <div class="tables-container">
+    <div class="table">
+      
+    <section class="example-section">
+      <mat-slide-toggle
+          class="toggle"
+          [checked]="dataLoad"
+          (change)="toggleLoad()">
+        <h6 class="example-h2">load</h6>
+      </mat-slide-toggle>
+    </section>
+
+      <div class="mat-elevation-z8" *ngIf="dataSource">
+        <table mat-table [dataSource]="dataSource" matSort>
+    
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let i = index;"> 
+              <span class="column-text">{{i}}</span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="changed">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Data Changed </th>
+            <td mat-cell *matCellDef="let row"> 
+              <span class="column-text">{{row.changed ? row.changed : 0}}</span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="buysell">
+            <th class="currency-name" mat-header-cell *matHeaderCellDef mat-sort-header> Sell->Buy </th>
+            <td class="currency-name" mat-cell *matCellDef="let row">
+              <div class="currency-compare">
+                <div class="currency-block">
+                  <span class="column-text">{{row.price.amount}}</span>
+                  <img class="img" [src]="row.price.image" [alt]="row.price.currencyTypeName" />
+                </div>
+                -&nbsp;>
+                <div>
+                  <img class="img" [src]="row.tradePrice.image" [alt]="row.tradePrice.currencyTypeName" />
+                  <span class="column-text">{{row.tradePrice.amount}} </span>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="stock">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Stock </th>
+            <td mat-cell *matCellDef="let row"> 
+              <span class="column-text">{{row.stackSize}}</span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="ign">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> IGN </th>
+            <td mat-cell *matCellDef="let row"> 
+              <span class="column-text ign" (click)="createMessage(row)">{{row.ign}}</span>
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="profit">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Profit </th>
+            <td mat-cell *matCellDef="let row"> 
+              <div>
+                <img class="img" [src]="'https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollRare.png?scale=1&w=1&h=1'" [alt]="'Chaos Orb'" />
+                <span class="column-text">{{row.profit}}</span>
+              </div>
+            </td>
+          </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="['id', 'changed', 'buysell', 'stock', 'ign', 'profit']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['id', 'changed', 'buysell', 'stock', 'ign', 'profit'];">
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+
 
 <router-outlet></router-outlet>
